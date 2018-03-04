@@ -13,27 +13,28 @@ import {
 
 type Props = {};
 export default class App extends Component<Props> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            titleText: "Bird's Nest",
-            bodyText: 'This is not really a bird nest.'
-        };
-    }
 
     render() {
         return (
-            <Text style={styles.baseText}>
-                <Text style={styles.titleText} onPress={this.onPressTitle}>
-                    {this.state.titleText}{'\n'}{'\n'}
-                </Text>
-                <Text numberOfLines={5}>
-                    {this.state.bodyText}
+            <Text style={{fontWeight: 'bold'}} onLayout={this.Layout}>
+                I am bold
+                <Text style={{color: 'red'}}>
+                    and red
                 </Text>
             </Text>
         );
     }
+
+
+    Layout(event) {
+        var msg = 'width:' + event.nativeEvent.layout.width + '\n';
+        msg += 'height:' + event.nativeEvent.layout.height + '\n';
+        msg += 'x:' + event.nativeEvent.layout.x + '\n';
+        msg += 'y:' + event.nativeEvent.layout.y;
+        alert(msg)
+    }
 }
+
 
 const styles = StyleSheet.create({
     baseText: {
